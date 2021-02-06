@@ -1,0 +1,40 @@
+<template>
+    <lightning-card>
+        <template if:true={showspinner}>
+            <div class="demo-only" style="height:6rem">
+                <div class="slds-spinner_container">
+                    <div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+                        <span class="slds-assistive-text">Loading</span>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <div class="slds-m-around_medium">
+            <div>
+                <lightning-datatable 
+                    key-field="id"
+                    data={data}
+                    columns={columns}
+                    hide-checkbox-column="true">
+                </lightning-datatable>
+            </div>
+            <div>
+                <lightning-layout vertical-align="end">
+                    <lightning-layout-item size="6" padding="around-small">
+                        <p class="slds-m-vertical_medium content slds-float_left">
+                            Displaying {startingRecord} to {endingRecord} of {totalRecountCount} records.
+                            Page {page} of {totalPage}. <br/> 
+                            <a href='{settinglink}'>Table Settings</a></p>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6" padding="around-small">
+                        <div class="slds-float_right">
+                            <c-paginator onprevious={previousHandler} onnext={nextHandler}></c-paginator>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+        </div>
+    </lightning-card>
+</template>
